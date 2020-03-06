@@ -37,7 +37,7 @@ public class InputMotor extends javax.swing.JFrame {
         tabelModel = (DefaultTableModel) tblMotor.getModel();
         clearText();
         tampilDataTabel();
-         txtPlat.setText("");
+        txtPlat.setText("");
         tblMotor.setEnabled(false);
     }
     
@@ -76,6 +76,7 @@ public class InputMotor extends javax.swing.JFrame {
         }
     
     }
+    
     public void MerekException() throws MerekException
     {
         if(txtMerek.getText().equals("yamaha") ||txtMerek.getText().equals("honda")  )
@@ -164,9 +165,9 @@ public class InputMotor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(106, 241, 241));
 
-        jPanel2.setBackground(new java.awt.Color(102, 255, 153));
+        jPanel2.setBackground(new java.awt.Color(172, 243, 243));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtPlat.addActionListener(new java.awt.event.ActionListener() {
@@ -250,8 +251,8 @@ public class InputMotor extends javax.swing.JFrame {
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(102, 255, 153));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CHOSE EDIT DELETE MOTOR", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(106, 241, 241));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CHOSE EDIT DELETE MOTOR", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         btnDelEd.setBackground(new java.awt.Color(0, 255, 255));
         btnDelEd.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -290,7 +291,7 @@ public class InputMotor extends javax.swing.JFrame {
             }
         });
 
-        tblMotor.setBackground(new java.awt.Color(102, 255, 153));
+        tblMotor.setBackground(new java.awt.Color(106, 241, 241));
         tblMotor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tblMotor.setForeground(new java.awt.Color(0, 0, 0));
         tblMotor.setModel(new javax.swing.table.DefaultTableModel(
@@ -357,31 +358,30 @@ public class InputMotor extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(59, 59, 59)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(501, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -437,18 +437,18 @@ public class InputMotor extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, e.message());
         }
-        catch(stringexception s)
+       
+        catch(tahunPembuatan t)
+        {
+            JOptionPane.showMessageDialog(this, t.tahunPembuatan());
+        }
+         catch(stringexception s)
         {
                JOptionPane.showMessageDialog(this, s.message());
             
                  
            
         }
-        catch(tahunPembuatan t)
-        {
-            JOptionPane.showMessageDialog(this, t.tahunPembuatan());
-        }
- 
         
         catch(MerekException e)
         {

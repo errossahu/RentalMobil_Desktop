@@ -14,6 +14,7 @@ public class InputException extends Exception{
     public String message(){
         return "Inputan Tidak Boleh Kosong!";
     }
+   
 }
 
 

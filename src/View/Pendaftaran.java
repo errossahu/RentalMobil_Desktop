@@ -8,6 +8,7 @@ import model.Pegawai;
 import  Dao.Dao_RentalMotor;
 import control.PegawaiControl;
 import exeption.InputException;
+import exeption.dataSama;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,18 +29,38 @@ public class Pendaftaran extends javax.swing.JFrame {
         adminC = new PegawaiControl() ;
         initComponents();
     }
-    
-    
+    public class SandiException extends Exception
+    {
+        public String message()
+        {
+            return "Sandi Tidak Sama" ;
+        }
+    }
+    public void SandiEXception() throws SandiException
+    {
+        
+        if(!kataSandi.getText().equalsIgnoreCase(kataSandi1.getText()))
+        {
+            throw new SandiException();
+        }
+    }
     public void InputException() throws InputException
     {
-        if(namaPegawai.getText().length()<1 || nomorPegawai.getText().length()<1|| kataSandi.getText().length()<1)
+        if(namaPegawai.getText().length()<1 || txtnomorPegawai.getText().length()<1|| kataSandi.getText().length()<1)
         {
               throw new InputException();
             
         }
        
     }
-    
+    public void cekNomor() throws dataSama
+    {
+      admin  = adminC.searchAdmin(txtnomorPegawai.getText());
+      if(admin!=null)
+      {
+       throw new   dataSama();
+      }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +72,7 @@ public class Pendaftaran extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        nomorPegawai = new javax.swing.JTextField();
+        txtnomorPegawai = new javax.swing.JTextField();
         namaPegawai = new javax.swing.JTextField();
         kataSandi = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
@@ -77,12 +98,12 @@ public class Pendaftaran extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(110, 100));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 46, 756, 61));
 
-        nomorPegawai.addActionListener(new java.awt.event.ActionListener() {
+        txtnomorPegawai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomorPegawaiActionPerformed(evt);
+                txtnomorPegawaiActionPerformed(evt);
             }
         });
-        jPanel1.add(nomorPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 233, 488, 30));
+        jPanel1.add(txtnomorPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 233, 488, 30));
 
         namaPegawai.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         namaPegawai.addActionListener(new java.awt.event.ActionListener() {
@@ -169,9 +190,11 @@ public class Pendaftaran extends javax.swing.JFrame {
 
         try
         {
+            SandiEXception();
             InputException ();
+            cekNomor();
             //            SandiEXception();
-            admin = new Pegawai(namaPegawai.getText(), nomorPegawai.getText(), kataSandi.getText());
+            admin = new Pegawai(namaPegawai.getText(), txtnomorPegawai.getText(), kataSandi.getText());
              
 //            if(!kataSandi.getText().equalsIgnoreCase(kataSandi1.getText()))
 //            {
@@ -192,15 +215,23 @@ public class Pendaftaran extends javax.swing.JFrame {
             //            else
             //            JOptionPane.showMessageDialog(this, e.tidakSama());
         }
+        catch(dataSama d)
+        {
+            JOptionPane.showMessageDialog(this, d.nomorPegawai());
+        }
+        catch(SandiException e)
+        {
+            JOptionPane.showMessageDialog(this, e.message());
+        }
     }//GEN-LAST:event_btnDaftarActionPerformed
 
     private void namaPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaPegawaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_namaPegawaiActionPerformed
 
-    private void nomorPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomorPegawaiActionPerformed
+    private void txtnomorPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomorPegawaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomorPegawaiActionPerformed
+    }//GEN-LAST:event_txtnomorPegawaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +276,6 @@ public class Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JPasswordField kataSandi;
     private javax.swing.JPasswordField kataSandi1;
     private javax.swing.JTextField namaPegawai;
-    private javax.swing.JTextField nomorPegawai;
+    private javax.swing.JTextField txtnomorPegawai;
     // End of variables declaration//GEN-END:variables
 }

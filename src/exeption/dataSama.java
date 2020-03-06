@@ -15,5 +15,9 @@ public class dataSama extends Exception{
     {
         return "No Plat Sudah Terdaftar" ;
     }
+    public String nomorPegawai()
+    {
+        return "Nomor Pegawai Sudah Terdaftar";
+    }
     
 }

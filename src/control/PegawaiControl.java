@@ -33,11 +33,11 @@ public class PegawaiControl {
     }
     
     
-    public Pegawai searchAdmin(String namaPegawai)
+    public Pegawai searchAdmin(String nomorPegawai)
     {
         Pegawai adm=null;
         pgwDAO.makeConnection();
-        adm=pgwDAO.searchAdmin(namaPegawai);
+        adm=pgwDAO.searchAdmin(nomorPegawai);
         pgwDAO.closeConnection();
         return adm;
     

@@ -6,6 +6,7 @@
 package control;
 
 import Dao.Dao_RentalMotor;
+import java.util.List;
 import model.PeminjamMahasiswa;
 
 /**
@@ -22,6 +23,25 @@ public class PeminjamMahasiswaControl {
     {
         MDAO.makeConnection();
         MDAO.tambahPeminjaMahasiswa(pm);
+        MDAO.closeConnection();
+    }
+    public void editPeminjamMahasiswa(PeminjamMahasiswa pm , String noKtp)
+    {
+        MDAO.makeConnection();
+        MDAO.editPeminjamMahasiswa(pm, noKtp);
+        MDAO.closeConnection();
+    }
+      public List<PeminjamMahasiswa> tampilPeminjam()
+   {
+       MDAO.makeConnection();
+       List<PeminjamMahasiswa> p = MDAO.TampilPeminjamMahasiwa();
+       MDAO.closeConnection();
+       return p;
+   }
+    public void deletePeminjam(String noKtp)
+    {
+        MDAO.makeConnection();
+        MDAO.hapusPeminjamMahasiswa(noKtp);
         MDAO.closeConnection();
     }
 }

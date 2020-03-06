@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Statement ; 
 import java.util.ArrayList;
 import java.util.List;
 import model.Pegawai;
@@ -64,7 +64,7 @@ public class Dao_RentalMotor {
     
        String sql = "INSERT INTO Admin (namaPegawai,nomorPegawai,kataSandi)VALUES('"+A.getNamaPegawai()+"','"+A.getNomorPegawai()+ "','"+A.getKataSandi()+"')";
         
-         try
+        try
         {
             Statement statement = CON.createStatement();
             int result = statement.executeUpdate(sql);
@@ -103,8 +103,10 @@ public class Dao_RentalMotor {
     
     ////////////////Cari nama Pegawai Pegawai///////////////////
     
-    public Pegawai searchAdmin (String namaPegawai){
-        String sql="SELECT * FROM Admin where namaPegawai='"+namaPegawai+"'";
+    
+    
+    public Pegawai searchAdmin (String nomorPegawai){
+        String sql="SELECT * FROM Admin where nomorPegawai='"+nomorPegawai+"'";
         System.out.println("Mencari Nama Pegawai . . .");
         
         Pegawai admin = null;
@@ -389,7 +391,7 @@ public class Dao_RentalMotor {
 //        //Admin (namaPegawai,nomorPegawai,kataSandi)VALUES('"+A.getNamaPegawai()+"','"+A.getNomorPegawai()+ "','"+A.getKataSandi()+"')";
         
         String sql = "Insert INTO PeminjamMahasiswa(nama,noKtp,alamat,namaKampus,alamatKampus,lamaPinjam,biaya) VALUES('"+pm.getNamaPeminjam()+
-                "','"+pm.getNomorKtp()+"','"+pm.getAlamat()+"','"+pm.getAlamatKampus()+"','"+pm.getAlamatKampus()+"','"+pm.getLamaPeminjam()+"','"+pm.getBiaya()+"')" ;
+                "','"+pm.getNomorKtp()+"','"+pm.getAlamat()+"','"+pm.getNamaKampus()+"','"+pm.getAlamatKampus()+"','"+pm.getLamaPeminjam()+"','"+pm.getBiaya()+"')" ;
         try
         {
             Statement s = CON.createStatement();
@@ -404,13 +406,182 @@ public class Dao_RentalMotor {
         }
         
     }
+    ///////////Edit Peminjam Mahasiwa /////////////
+    public void editPeminjamMahasiswa(PeminjamMahasiswa pm,String noKtp)
+    {
+        
 
+        
+            String sql = "UPDATE PeminjamMahasiswa set nama= '"+pm.getNamaPeminjam()+"',noKtp = '"+pm.getNomorKtp()+"', alamat='"+pm.getAlamat()+"', namaKampus = '"+pm.getNamaKampus()+"',alamatKampus='"+pm.getAlamatKampus()+"',"
+            +"lamaPinjam ='"+pm.getLamaPeminjam()+"' where noKtp = '"+noKtp+"'";
+            
+            try
+            {
+                Statement s= CON.createStatement() ;
+                int Result = s.executeUpdate(sql);
+                System.out.println("Data Updated " +Result+ "\n");
+                
+            }catch (Exception e)
+            {
+                System.out.println("Gagal Updated ");
+                System.out.println(e);
+            }
+    }
+   
     
+///////Tampil Peminjam Mahasiswa
+
+      public List<PeminjamMahasiswa> TampilPeminjamMahasiwa()
+    {
+        String sql = "select * from PeminjamMahasiswa";
+        System.out.println("Daftar PeminjamMahasiswa. . .");
+
+        List<PeminjamMahasiswa> list = new ArrayList<>();
+
+        try
+        {
+            Statement statement = CON.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            if(rs != null)
+            {
+                while(rs.next())
+                {
+                    PeminjamMahasiswa p = new PeminjamMahasiswa(rs.getString("nama"),rs.getString("noKtp"),rs.getString("alamat"),Integer.parseInt(rs.getString("lamaPinjam")),rs.getString("namaKampus"),rs.getString("alamatKampus"),Double.parseDouble(rs.getString("biaya"))); 
+                    list.add(p);
+                }
+            }
+            rs.close();
+            statement.close();
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Gagal Menampilkan Data Peminjam...\n");
+            System.out.println(e);
+        }
+
+        return list;
+    }    
+    /////Hapus Peminjam Mahasiswa
+      
+       
+    public void hapusPeminjamMahasiswa (String nomorKtp)
+    {
+        String sql = "DELETE FROM PeminjamMahasiswa where noKtp = '"+nomorKtp+"'";
+        System.out.println("Motor DIHAPUS..");
+        
+        try
+        {
+            Statement statement = CON.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Hapus " + result+ " PeminjamMahasiswa\n");
+            statement.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Gagal Hapus Motor..");
+            System.out.println(e);
+        }
+    }
     
     
      
             
+//////////TAMBAH PEMINJAM PEGAAWAI/// 
+    
+     public void tambahPeminjamPegawai(PeminjamPegawai pp)
+    {
+
+        
+        String sql = "Insert INTO PeminjamPegawai(nama,noKtp,alamat,namaKantor,alamatKantor,lamaPinjam,biaya) VALUES('"+pp.getNamaPeminjam()+
+                "','"+pp.getNomorKtp()+"','"+pp.getAlamat()+"','"+pp.getNamaKantor()+"','"+pp.getAlamatKantor()+"','"+pp.getLamaPeminjam()+"','"+pp.getBiaya()+"')" ;
+        try
+        {
+            Statement s = CON.createStatement();
+            int R = s.executeUpdate(sql);
+            System.out.println("Added Peminjam Pegawai"+R+"\n");
+            s.close();
+            
+        }catch(Exception e)
+        {
+            System.out.println("Error Adding Database");
+            System.out.println(e);
+        }
+        
+    }
+   //// Edit Peminjam Pegawai 
+     public void editPeminjamPegawai(PeminjamPegawai pg,String noKtp)
+    {
+        
+
+        
+            String sql = "UPDATE PeminjamPegawai set nama= '"+pg.getNamaPeminjam()+"',noKtp = '"+pg.getNomorKtp()+"', alamat='"+pg.getAlamat()+"', namaKantor = '"+pg.getNamaKantor()+"',alamatKantor='"+pg.getAlamat()+"',"
+            +"lamaPinjam ='"+pg.getLamaPeminjam()+"' where noKtp = '"+noKtp+"'";
+            
+            try
+            {
+                Statement s= CON.createStatement() ;
+                int Result = s.executeUpdate(sql);
+                System.out.println("Data Updated " +Result+ "\n");
+                
+            }catch (Exception e)
+            {
+                System.out.println("Gagal Updated ");
+                System.out.println(e);
+            }
+    }
+   /////Tampil Peminjam Pegawai 
+    public List<PeminjamPegawai> TampilPeminjamPegawai()
+    {
+        String sql = "select * from PeminjamPegawai";
+        System.out.println("Daftar PeminjamPegawai. . .");
+
+        List<PeminjamPegawai> list = new ArrayList<>();
+
+        try
+        {
+            Statement statement = CON.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            if(rs != null)
+            {
+                while(rs.next())
+                {
+                    PeminjamPegawai p = new PeminjamPegawai(rs.getString("nama"),rs.getString("noKtp"),rs.getString("alamat"),Integer.parseInt(rs.getString("lamaPinjam")),rs.getString("namaKantor"),rs.getString("alamatKantor"),Double.parseDouble(rs.getString("biaya"))); 
+                    list.add(p);
+                }
+            }
+            rs.close();
+            statement.close();
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Gagal Menampilkan Data Peminjam...\n");
+            System.out.println(e);
+        }
+
+        return list;
+    }    
 
     
-    
+       public void hapusPeminjamPegawai (String nomorKtp)
+    {
+        String sql = "DELETE FROM PeminjamPegawai where noKtp = '"+nomorKtp+"'";
+        System.out.println("Motor DIHAPUS..");
+        
+        try
+        {
+            Statement statement = CON.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Hapus " + result+ " PeminjamMahasiswa\n");
+            statement.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Gagal Hapus Motor..");
+            System.out.println(e);
+        }
+    }
 }

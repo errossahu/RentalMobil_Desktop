@@ -38,7 +38,10 @@ public class PeminjamMahasiswa extends Peminjam implements hitungBiayaSewa {
     {
         return alamatKampus ;
     }
-    
+    public String showBiaya()
+    {
+        return "Total Harga "+getBiaya()+ "\n Untuk Peminjaman Selama " +getLamaPeminjam() + "Hari";
+    }
     @Override
     public double getBiaya() {
         return 45000*lamaPinjam ;

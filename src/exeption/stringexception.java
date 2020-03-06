@@ -15,6 +15,11 @@ public class stringexception extends Exception {
     {
         return "Inputan Tahun Hanya Angka !" ;
     }
+    
+    public String messageHari()
+    {
+        return "Inputan Hari Hanya angka" ;
+    }
   
     
     

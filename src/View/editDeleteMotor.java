@@ -29,8 +29,11 @@ public class editDeleteMotor extends javax.swing.JFrame {
        
         initComponents();
         clearText();
+              txtNomor.setEnabled(false);
         setDisMotor(false);
         mc = new MotorControl();
+        txtNomor.setEnabled(false);
+    
     
     }
     
@@ -54,7 +57,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
     }
     public void setDisMotor(boolean val)
     {
-        txtNomor.setEnabled(val);
+  
         txtMerek.setEnabled(val);
         txtTahun.setEnabled(val);
         
@@ -62,7 +65,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
         btnDelete.setEnabled(val);
         btnEdit.setEnabled(val);
         btnDone.setEnabled(val);
-         btnCancel.setEnabled(val);
+        btnCancel.setEnabled(val);
     }
     public void clearText()
     {
@@ -81,7 +84,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
         else
         {
             throw new MerekException();
-            
+
         }
         
     }
@@ -118,7 +121,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(0, 204, 204));
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cari Plat Motor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cari Plat Motor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +178,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
                     .addComponent(btnCari)
                     .addComponent(btnEdit)
                     .addComponent(btnDelete)
-                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -188,12 +191,15 @@ public class editDeleteMotor extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nomor Kendaraan");
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Merek");
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tahun Pembuatan");
 
@@ -224,7 +230,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                         .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +309,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)))
@@ -360,7 +366,7 @@ public class editDeleteMotor extends javax.swing.JFrame {
         // TODO add your handling code here:
         action="edit" ;
         setDisMotor(true);
-  
+        
         btnCancel.setEnabled(true);
         btnDelete.setEnabled(false);
         btnCari.setEnabled(false);
@@ -375,12 +381,15 @@ public class editDeleteMotor extends javax.swing.JFrame {
           if(action.equalsIgnoreCase("edit"))
           {
               MerekException();
-              dataSama();
+//              dataSama();
               InputException();
-                if(JOptionPane.showConfirmDialog(null, "Yakin Edit?", "Yakin?",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+                 
+              if(JOptionPane.showConfirmDialog(null, "Yakin Edit?", "Yakin?",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
                 {
-
+                    
+                    
                      m = new Motor(txtNomor.getText(), txtMerek.getText(), Integer.parseInt(txtTahun.getText()));
+   
                      mc.editMotor(m,txtCari.getText());
                     JOptionPane.showMessageDialog(this, "Data Motor Berhasil Di Edit");
                     setDisMotor(false);
@@ -406,10 +415,10 @@ public class editDeleteMotor extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, e.message());
            
        }
-       catch(dataSama e)
-       {
-           JOptionPane.showMessageDialog(this, e.message());
-       }
+//       catch(dataSama e)
+//       {
+//           JOptionPane.showMessageDialog(this, e.message());
+//       }
        catch(MerekException m)
        {
            JOptionPane.showMessageDialog(this, m.message());
