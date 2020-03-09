@@ -412,7 +412,10 @@ public class Dao_RentalMotor {
         
 
         
-            String sql = "UPDATE PeminjamMahasiswa set nama= '"+pm.getNamaPeminjam()+"',noKtp = '"+pm.getNomorKtp()+"', alamat='"+pm.getAlamat()+"', namaKampus = '"+pm.getNamaKampus()+"',alamatKampus='"+pm.getAlamatKampus()+"',"
+            String sql = "UPDATE PeminjamMahasiswa set nama= '"+pm.getNamaPeminjam()
+             +"',noKtp = '"+pm.getNomorKtp()
+             +"', alamat='"+pm.getAlamat()
+            +"', namaKampus = '"+pm.getNamaKampus()+"',alamatKampus='"+pm.getAlamatKampus()+"',"
             +"lamaPinjam ='"+pm.getLamaPeminjam()+"' where noKtp = '"+noKtp+"'";
             
             try
